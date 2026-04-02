@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Approve Booking</title></head>
+<body>
+<h1>Processing Booking Approval...</h1>
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+const action = params.get('action') || 'confirmed';
+
+// Replace <boring-website4.vercel.app> with your deployed backend
+fetch('https://<boring-website4.vercel.app>/api/bookings', {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ id, status: action })
+})
+.then(() => alert(`Booking marked as ${action}`))
+.catch(() => alert('Error updating booking'));
+</script>
+</body>
+</html>
